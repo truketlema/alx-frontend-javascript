@@ -1,4 +1,4 @@
-// Teacher interface from previous task
+// Teacher interface
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
@@ -10,7 +10,7 @@ interface Teacher {
 
 // Directors interface extending Teacher
 interface Directors extends Teacher {
-  numberOfReports: number;
+  numberOfReports: number; // mandatory
 }
 
 // Example usage
@@ -21,5 +21,3 @@ const director1: Directors = {
   fullTimeEmployee: true,
   numberOfReports: 17,
 };
-
-console.log(director1);
