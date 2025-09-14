@@ -8,7 +8,7 @@ interface Teacher {
   [key: string]: any;
 }
 
-// Task 2: Director interface extending Teacher
+// Task 2: Director interface
 interface Director extends Teacher {
   numberOfReports: number;
 }
@@ -38,8 +38,14 @@ interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
-function printTeacher(firstName: string, lastName: string): string {
+function printTeacher({
+  firstName,
+  lastName,
+}: {
+  firstName: string;
+  lastName: string;
+}): string {
   return `${firstName[0]}. ${lastName}`;
 }
 
-console.log(printTeacher("John", "Doe")); // Output: J. Doe
+console.log(printTeacher({ firstName: "John", lastName: "Doe" })); // J. Doe
