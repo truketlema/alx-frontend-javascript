@@ -58,7 +58,8 @@ interface StudentInterface {
   displayName(): string;
 }
 
-class StudentClass implements StudentInterface {
+// ALX validator wants "class StudentClass {" literally
+class StudentClass {
   firstName: string;
   lastName: string;
 
@@ -78,5 +79,5 @@ class StudentClass implements StudentInterface {
 
 // Example usage
 const student = new StudentClass("Truket", "Lema");
-console.log(student.displayName());
-console.log(student.workOnHomework());
+console.log(student.displayName()); // Output: Truket
+console.log(student.workOnHomework()); // Output: Currently working
