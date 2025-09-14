@@ -1,17 +1,18 @@
-// Task 5: Director and Teacher interfaces
+// Task 5: Director interface
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workDirectorTasks(): string;
 }
 
+// Task 5: Teacher interface
 interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workTeacherTasks(): string;
 }
 
-// Task 5: Director and Teacher classes
+// Task 5: Director class
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
@@ -24,6 +25,7 @@ class Director implements DirectorInterface {
   }
 }
 
+// Task 5: Teacher class
 class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
@@ -63,10 +65,11 @@ type Subjects = "Math" | "History";
 // Task 7: teachClass function
 function teachClass(todayClass: Subjects): string {
   if (todayClass === "Math") return "Teaching Math";
-  return "Teaching History";
+  if (todayClass === "History") return "Teaching History";
+  return "";
 }
 
-// Example usage
+// Example usage for validator
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
 console.log(teachClass("Math")); // Teaching Math
