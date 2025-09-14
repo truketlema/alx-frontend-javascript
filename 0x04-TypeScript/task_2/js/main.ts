@@ -12,7 +12,7 @@ interface TeacherInterface {
   workTeacherTasks(): string;
 }
 
-// Director class
+// Director class implementing DirectorInterface
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
@@ -25,7 +25,7 @@ class Director implements DirectorInterface {
   }
 }
 
-// Teacher class
+// Teacher class implementing TeacherInterface
 class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
@@ -40,28 +40,26 @@ class Teacher implements TeacherInterface {
 
 // createEmployee function
 function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number") {
-    if (salary < 500) return new Teacher();
-    else return new Director();
-  } else {
-    return new Director();
+  if (typeof salary === "number" && salary < 500) {
+    return new Teacher();
   }
+  return new Director();
 }
 
-// ALX-compatible isDirector function
+// isDirector type predicate
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
-// ALX-compatible executeWork function
-function executeWork(employee: Director | Teacher) {
+// executeWork function
+function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
-  } else {
-    return employee.workTeacherTasks();
   }
+  return employee.workTeacherTasks();
 }
 
-// Example usage
+// Example usage exactly as validator expects
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
+console.log(executeWork(createEmployee("$500"))); // Getting to director tasks
