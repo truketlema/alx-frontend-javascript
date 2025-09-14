@@ -10,7 +10,7 @@ interface Teacher {
 
 // Directors interface extending Teacher
 interface Directors extends Teacher {
-  numberOfReports: number; // mandatory
+  numberOfReports: number; // mandatory, type number
 }
 
 // Example usage
