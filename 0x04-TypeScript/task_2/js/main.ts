@@ -1,18 +1,18 @@
 // Task 5: DirectorInterface and TeacherInterface
-interface DirectorInterface {
+export interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workDirectorTasks(): string;
 }
 
-interface TeacherInterface {
+export interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workTeacherTasks(): string;
 }
 
 // Director class
-class Director implements DirectorInterface {
+export class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
   }
@@ -25,7 +25,7 @@ class Director implements DirectorInterface {
 }
 
 // Teacher class
-class Teacher implements TeacherInterface {
+export class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
   }
@@ -38,7 +38,7 @@ class Teacher implements TeacherInterface {
 }
 
 // Task 5: createEmployee
-function createEmployee(salary: number | string): Director | Teacher {
+export function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number" && salary < 500) {
     return new Teacher();
   }
@@ -46,12 +46,12 @@ function createEmployee(salary: number | string): Director | Teacher {
 }
 
 // Task 6: isDirector (type predicate)
-function isDirector(employee: Director | Teacher): employee is Director {
+export function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
 // Task 6: executeWork
-function executeWork(employee: Director | Teacher): string {
+export function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
   } else {
@@ -59,21 +59,10 @@ function executeWork(employee: Director | Teacher): string {
   }
 }
 
-// Task 7: String literal type and teachClass function
-
+// Task 7: String literal type
 export type Subjects = "Math" | "History";
 
 // Task 7: teachClass function
 export function teachClass(todayClass: Subjects): string {
-  if (todayClass === "Math") {
-    return "Teaching Math";
-  }
-  return "Teaching History";
+  return todayClass === "Math" ? "Teaching Math" : "Teaching History";
 }
-
-// Example usage
-console.log(executeWork(createEmployee(200))); // Getting to work
-console.log(executeWork(createEmployee(1000))); // Getting to director tasks
-
-console.log(teachClass("Math")); // Teaching Math
-console.log(teachClass("History")); // Teaching History
