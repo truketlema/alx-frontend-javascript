@@ -59,15 +59,17 @@ function executeWork(employee: Director | Teacher): string {
   return employee.workTeacherTasks();
 }
 
-// Task 7: Subjects string literal type
+// String literal type
 type Subjects = "Math" | "History";
 
-// Task 7: teachClass function
+// teachClass function
 function teachClass(todayClass: Subjects): string {
-  if (todayClass === "Math") return "Teaching Math";
-  if (todayClass === "History") return "Teaching History";
-  return "";
+  return `Teaching ${todayClass}`;
 }
+
+// Example usage
+console.log(teachClass("Math")); // Teaching Math
+console.log(teachClass("History")); // Teaching History
 
 // Example usage for validator
 console.log(executeWork(createEmployee(200))); // Getting to work
