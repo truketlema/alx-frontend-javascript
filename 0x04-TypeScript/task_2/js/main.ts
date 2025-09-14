@@ -59,14 +59,19 @@ function executeWork(employee: Director | Teacher): string {
   }
 }
 
-// Task 7: String literal type and teachClass
+// Task 7: String literal type
 type Subjects = "Math" | "History";
 
+// teachClass function
 function teachClass(todayClass: Subjects): string {
-  return `Teaching ${todayClass}`;
+  if (todayClass === "Math") {
+    return "Teaching Math";
+  } else {
+    return "Teaching History";
+  }
 }
 
-// Example usages for testing
+// Example usages
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
 
