@@ -33,13 +33,50 @@ const director1: Director = {
 console.log(teacher3);
 console.log(director1);
 
-// Task 3: printTeacher function
+// Task 3: printTeacher
 interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
+// prettier-ignore
 function printTeacher({ firstName, lastName }: { firstName: string; lastName: string }): string {
   return `${firstName}. ${lastName}`;
 }
 
 console.log(printTeacher({ firstName: "John", lastName: "Doe" }));
+
+// Task 4: Student class
+interface StudentConstructor {
+  firstName: string;
+  lastName: string;
+}
+
+interface StudentInterface {
+  firstName: string;
+  lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+class StudentClass implements StudentInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return "Currently working";
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Example usage
+const student = new StudentClass("Truket", "Lema");
+console.log(student.displayName());
+console.log(student.workOnHomework());
