@@ -40,25 +40,21 @@ class Teacher implements TeacherInterface {
 
 // createEmployee function
 function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number" && salary < 500) {
-    return new Teacher();
-  }
+  if (typeof salary === "number" && salary < 500) return new Teacher();
   return new Director();
 }
 
-// isDirector function (type predicate)
+// isDirector function
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
 // executeWork function
 function executeWork(employee: Director | Teacher): string {
-  if (isDirector(employee)) {
-    return employee.workDirectorTasks();
-  }
+  if (isDirector(employee)) return employee.workDirectorTasks();
   return employee.workTeacherTasks();
 }
 
-// Example usage (matches ALX expected output)
+// Example usage
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
