@@ -1,18 +1,17 @@
-// Director interface
+// Task 5: Director and Teacher interfaces
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workDirectorTasks(): string;
 }
 
-// Teacher interface
 interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workTeacherTasks(): string;
 }
 
-// Director class
+// Task 5: Director and Teacher classes
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
@@ -25,7 +24,6 @@ class Director implements DirectorInterface {
   }
 }
 
-// Teacher class
 class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
@@ -38,23 +36,38 @@ class Teacher implements TeacherInterface {
   }
 }
 
-// createEmployee function
+// Task 5: createEmployee function
 function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number" && salary < 500) return new Teacher();
+  if (typeof salary === "number" && salary < 500) {
+    return new Teacher();
+  }
   return new Director();
 }
 
-// isDirector function
+// Task 6: isDirector function (type predicate)
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
-// executeWork function
+// Task 6: executeWork function
 function executeWork(employee: Director | Teacher): string {
-  if (isDirector(employee)) return employee.workDirectorTasks();
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  }
   return employee.workTeacherTasks();
+}
+
+// Task 7: Subjects string literal type
+type Subjects = "Math" | "History";
+
+// Task 7: teachClass function
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === "Math") return "Teaching Math";
+  return "Teaching History";
 }
 
 // Example usage
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
+console.log(teachClass("Math")); // Teaching Math
+console.log(teachClass("History")); // Teaching History
