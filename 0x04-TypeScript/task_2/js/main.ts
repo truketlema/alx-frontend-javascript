@@ -60,12 +60,14 @@ function executeWork(employee: Director | Teacher): string {
 }
 
 // Task 7: String literal type and teachClass function
-// Task 7: String literal type
+
 export type Subjects = "Math" | "History";
 
 // Task 7: teachClass function
 export function teachClass(todayClass: Subjects): string {
-  if (todayClass === "Math") return "Teaching Math";
+  if (todayClass === "Math") {
+    return "Teaching Math";
+  }
   return "Teaching History";
 }
 
