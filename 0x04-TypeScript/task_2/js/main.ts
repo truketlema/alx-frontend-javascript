@@ -12,31 +12,27 @@ interface TeacherInterface {
   workTeacherTasks(): string;
 }
 
-// Director class implementing DirectorInterface
+// Director class
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
   }
-
   getCoffeeBreak(): string {
     return "Getting a coffee break";
   }
-
   workDirectorTasks(): string {
     return "Getting to director tasks";
   }
 }
 
-// Teacher class implementing TeacherInterface
+// Teacher class
 class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
   }
-
   getCoffeeBreak(): string {
     return "Cannot have a break";
   }
-
   workTeacherTasks(): string {
     return "Getting to work";
   }
@@ -45,24 +41,20 @@ class Teacher implements TeacherInterface {
 // createEmployee function
 function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number") {
-    if (salary < 500) {
-      return new Teacher();
-    } else {
-      return new Director();
-    }
-  } else if (typeof salary === "string") {
+    if (salary < 500) return new Teacher();
+    else return new Director();
+  } else {
     return new Director();
   }
-  return new Teacher();
 }
 
-// Function to check if employee is a Director
+// ALX-compatible isDirector function
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
-// Function to execute work depending on employee type
-function executeWork(employee: Director | Teacher): string {
+// ALX-compatible executeWork function
+function executeWork(employee: Director | Teacher) {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
   } else {
@@ -71,9 +63,5 @@ function executeWork(employee: Director | Teacher): string {
 }
 
 // Example usage
-console.log(createEmployee(200)); // Teacher
-console.log(createEmployee(1000)); // Director
-console.log(createEmployee("$500")); // Director
-
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
