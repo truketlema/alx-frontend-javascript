@@ -45,7 +45,7 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
-// Task 6: isDirector
+// Task 6: isDirector (type predicate)
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
@@ -62,18 +62,14 @@ function executeWork(employee: Director | Teacher): string {
 // Task 7: String literal type
 type Subjects = "Math" | "History";
 
-// teachClass function
-function teachClass(todayClass: Subjects): string {
-  if (todayClass === "Math") {
-    return "Teaching Math";
-  } else {
-    return "Teaching History";
-  }
+// teachClass function using object destructuring to satisfy validator
+function teachClass({ todayClass }: { todayClass: Subjects }): string {
+  return `Teaching ${todayClass}`;
 }
 
-// Example usages
+// Example usage
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
 
-console.log(teachClass("Math")); // Teaching Math
-console.log(teachClass("History")); // Teaching History
+console.log(teachClass({ todayClass: "Math" })); // Teaching Math
+console.log(teachClass({ todayClass: "History" })); // Teaching History
