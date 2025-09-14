@@ -1,19 +1,25 @@
+// Teacher interface from previous task
 interface Teacher {
-  readonly firstName: string; // only set at initialization
-  readonly lastName: string; // only set at initialization
+  readonly firstName: string;
+  readonly lastName: string;
   fullTimeEmployee: boolean;
-  yearsOfExperience?: number; // optional
   location: string;
-  [key: string]: any; // allows any extra property
+  yearsOfExperience?: number;
+  [key: string]: any;
+}
+
+// Directors interface extending Teacher
+interface Directors extends Teacher {
+  numberOfReports: number;
 }
 
 // Example usage
-const teacher3: Teacher = {
+const director1: Directors = {
   firstName: "John",
   lastName: "Doe",
-  fullTimeEmployee: false,
   location: "London",
-  contract: false, // extra property
+  fullTimeEmployee: true,
+  numberOfReports: 17,
 };
 
-console.log(teacher3);
+console.log(director1);
