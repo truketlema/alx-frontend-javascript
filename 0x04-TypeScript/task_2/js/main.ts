@@ -37,7 +37,7 @@ class Teacher implements TeacherInterface {
   }
 }
 
-// Task 5: createEmployee
+// Task 5: createEmployee function
 function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number" && salary < 500) {
     return new Teacher();
@@ -45,12 +45,12 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
-// Task 6: isDirector (type predicate)
+// Task 6: isDirector function (type predicate)
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
-// Task 6: executeWork
+// Task 6: executeWork function
 function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
@@ -59,15 +59,14 @@ function executeWork(employee: Director | Teacher): string {
   }
 }
 
-// Task 7: String literal type
+// Task 7: String literal type and teachClass function
 type Subjects = "Math" | "History";
 
-// teachClass function using object destructuring to satisfy validator
 function teachClass({ todayClass }: { todayClass: Subjects }): string {
   return `Teaching ${todayClass}`;
 }
 
-// Example usage
+// Example usages
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
 
