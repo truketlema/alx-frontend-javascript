@@ -1,18 +1,17 @@
-// Task 5: Director interface
+// Task 5: DirectorInterface and TeacherInterface
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workDirectorTasks(): string;
 }
 
-// Task 5: Teacher interface
 interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
   workTeacherTasks(): string;
 }
 
-// Task 5: Director class
+// Director class
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home";
@@ -25,7 +24,7 @@ class Director implements DirectorInterface {
   }
 }
 
-// Task 5: Teacher class
+// Teacher class
 class Teacher implements TeacherInterface {
   workFromHome(): string {
     return "Cannot work from home";
@@ -38,7 +37,7 @@ class Teacher implements TeacherInterface {
   }
 }
 
-// Task 5: createEmployee function
+// Task 5: createEmployee
 function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number" && salary < 500) {
     return new Teacher();
@@ -46,33 +45,30 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
-// Task 6: isDirector function (type predicate)
+// Task 6: isDirector
 function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
 
-// Task 6: executeWork function
+// Task 6: executeWork
 function executeWork(employee: Director | Teacher): string {
   if (isDirector(employee)) {
     return employee.workDirectorTasks();
+  } else {
+    return employee.workTeacherTasks();
   }
-  return employee.workTeacherTasks();
 }
 
-// String literal type
+// Task 7: String literal type and teachClass
 type Subjects = "Math" | "History";
 
-// teachClass function
 function teachClass(todayClass: Subjects): string {
   return `Teaching ${todayClass}`;
 }
 
-// Example usage
-console.log(teachClass("Math")); // Teaching Math
-console.log(teachClass("History")); // Teaching History
-
-// Example usage for validator
+// Example usages for testing
 console.log(executeWork(createEmployee(200))); // Getting to work
 console.log(executeWork(createEmployee(1000))); // Getting to director tasks
+
 console.log(teachClass("Math")); // Teaching Math
 console.log(teachClass("History")); // Teaching History
