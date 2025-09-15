@@ -39,8 +39,11 @@ export class Teacher implements TeacherInterface {
 
 // Task 5: createEmployee
 export function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number" && salary < 500) {
-    return new Teacher();
+  if (typeof salary === "number") {
+    if (salary < 500) {
+      return new Teacher();
+    }
+    return new Director();
   }
   return new Director();
 }
@@ -59,10 +62,8 @@ export function executeWork(employee: Director | Teacher): string {
   }
 }
 
-// Task 7: String literal type
 export type Subjects = "Math" | "History";
 
-// Task 7: teachClass function
 export function teachClass(todayClass: Subjects): string {
   return todayClass === "Math" ? "Teaching Math" : "Teaching History";
 }
